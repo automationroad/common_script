@@ -1,5 +1,5 @@
 #!/bin/bash
-#desc : centos7环境下新装系统基本配置
+#desc : centos7环境下新系统安装后基本修改配置
 #author : 浪子尘心
 #created : 2018-08-23
 
