@@ -8,7 +8,7 @@
 tomcat_path='/home/software/apache-tomcat-8.5.32/logs'
 #保留天数
 DATE=`date "+%Y-%m-%d"`
-#保存30天日志，日志需要存放天数根据需要修改
+# 保存30天日志，日志需要存放天数根据需要修改
 TENDAYSAGO=`date -d "-30 days" +%Y-%m-%d`
 cd ${tomcat_path}
 cp catalina.out catalina.out.$DATE.log
