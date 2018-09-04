@@ -56,3 +56,11 @@ ulimit -n
 echo "* soft nofile 65536" >> /etc/security/limits.conf
 echo "* hard nofile 65536" >> /etc/security/limits.conf
 reboot
+
+#12、设置history显示操作时间和最大记录数
+cat >> /etc/bashrc <<EOF
+HISTFILESIZE=2000
+HISTSIZE=2000
+HISTTIMEFORMAT='%F %T '
+export HISTTIMEFORMAT
+EOF
