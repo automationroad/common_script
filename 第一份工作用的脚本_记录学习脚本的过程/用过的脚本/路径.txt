@@ -1,0 +1,1 @@
+vi ../webapps/bxkcA003/WEB-INF/classes/schedules.xml

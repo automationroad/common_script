@@ -1,0 +1,14 @@
+﻿以root用户执行命令
+crontab -e
+按i键输入
+5 0 * * *       sh /home/bin/clearCatalina.sh  >& /dev/null
+设置脚本每天0点5分执行，其中/root/scripts/为脚本存放位置，要根据实际情况修改。
+输入:wq 保存退出。
+0 * * * *       sh /home/checkblockip.sh  >& /dev/null
+
+5 0 * * *       sh /home/clearlog.sh  >& /dev/null
+
+30 11 * * *       sh /home/bak.sh  >& /dev/null
+
+
+30 0 1 * *       /bin/sh /home/oracle/script/backup_oracle_1x3.sh  >& /dev/null
