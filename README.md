@@ -8,3 +8,5 @@
 #### 3、centos6下编译安装zabbix3.4.2，数据库MySQL5.6
 
 #### 4、centos7下编译安装mongodb
+
+#### 5、批量测试网络端口是否连通
