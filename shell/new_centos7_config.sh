@@ -83,12 +83,12 @@ rpm -ivh jdk-8u181-linux-x64.rpm
 # 方法二：源码安装
 yum remove java-1.8.0-openjdk*
 wget http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u181-linux-x64.tar.gz
-tar -zxf jdk-8u181-linux-x64.tar.gz
-mkdir /usr/local/java && cd /usr/local/java
+tar --no-same-owner -zxf jdk-8u181-linux-x64.tar.gz
+mkdir /usr/local/java
 mv jdk1.8.0_181 /usr/local/java
 # 编辑
 vim /etc/profile
-export JAVA_HOME=/usr/local/java/jdk1.8.0_11
+export JAVA_HOME=/usr/local/java/jdk1.8.0_181
 export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 export PATH=$PATH:$JAVA_HOME/bin
 
