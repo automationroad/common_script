@@ -87,10 +87,19 @@ tar --no-same-owner -zxf jdk-8u181-linux-x64.tar.gz
 mkdir /usr/local/java
 mv jdk1.8.0_181 /usr/local/java
 # 编辑
-vim /etc/profile
+cat /etc/profile << EOF
 export JAVA_HOME=/usr/local/java/jdk1.8.0_181
-export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=$PATH:$JAVA_HOME/bin
+export PATH JAVA_HOME CLASSPATH
+EOF
+# update-alternatives 是解决版本冲突的，卸载自带的openjdk1.8之后，还有jdk1.7，如果没有这些步骤，加载环境也是显示jdk1.7
+update-alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_181/bin/java 300
+update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.0_181/bin/javac 300
+update-alternatives --config java
+update-alternatives --config javac
+source /etc/profile
 
 # 内核参数优化，使用 sysctl -p 立即生效
 cat /etc/sysctl.conf
