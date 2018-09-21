@@ -71,7 +71,28 @@ HISTTIMEFORMAT="%F %T $USER_IP:`whoami` "
 export HISTTIMEFORMAT
 EOF
 
-# 13、内核参数优化，使用 sysctl -p 立即生效
+# 13、centos7系统安装后自带openjdk1.8，这个略坑，跟开发使用的oracle官方的是不一样的，所以需要卸载重装
+# 方法一： RPM安装
+yum remove java-1.8.0-openjdk*
+wget http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm
+# 下载可能要本地下载，传上去
+rpm -ivh jdk-8u181-linux-x64.rpm
+# 安装后目录
+/usr/java/jdk1.8.0_181-amd64
+
+# 方法二：源码安装
+yum remove java-1.8.0-openjdk*
+wget http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u181-linux-x64.tar.gz
+tar -zxf jdk-8u181-linux-x64.tar.gz
+mkdir /usr/local/java && cd /usr/local/java
+mv jdk1.8.0_181 /usr/local/java
+# 编辑
+vim /etc/profile
+export JAVA_HOME=/usr/local/java/jdk1.8.0_11
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+
+# 内核参数优化，使用 sysctl -p 立即生效
 cat /etc/sysctl.conf
 # 避免放大攻击
 net.ipv4.icmp_echo_ignore_broadcasts = 1
