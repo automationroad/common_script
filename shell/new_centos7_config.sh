@@ -71,7 +71,7 @@ HISTTIMEFORMAT="%F %T $USER_IP:`whoami` "
 export HISTTIMEFORMAT
 EOF
 
-# 13、centos7系统安装后自带openjdk1.8，这个略坑，跟开发使用的oracle官方的是不一样的，所以需要卸载重装
+# 13、centos7系统安装后自带openjdk1.8，这个略坑，跟开发使用的oracle官方的是不一样的，所以需要卸载重装（开发哥杀过来我才知道的openjdk是坑来的哈哈）
 # 方法一： RPM安装
 yum remove java-1.8.0-openjdk*
 wget http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm
@@ -97,6 +97,7 @@ EOF
 # update-alternatives 是解决版本冲突的，卸载自带的openjdk1.8之后，还有jdk1.7，如果没有这些步骤，加载环境也是显示jdk1.7
 update-alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_181/bin/java 300
 update-alternatives --install /usr/bin/javac javac /usr/java/jdk1.8.0_181/bin/javac 300
+# 这下面的两个步骤会有交互选择过程
 update-alternatives --config java
 update-alternatives --config javac
 source /etc/profile
