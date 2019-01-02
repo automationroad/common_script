@@ -43,4 +43,23 @@ chmod +x /etc/init.d/sshd
 chkconfig --add sshd
 chkconfig sshd on
 chkconfig --list sshd
+systemctl start sshd
 systemctl restart sshd
+
+
+# 方法二
+yum install -y gcc openssl-devel pam-devel rpm-build pam-devel
+wget -c http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.9p1.tar.gz
+tar -zxf openssh-7.9p1.tar.gz &&  cd openssh-7.9p1
+./configure --prefix=/usr --sysconfdir=/etc/ssh --with-pam --with-zlib --with-md5-passwords --with-tcp-wrappers && make && make install
+sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin\ yes/g' /etc/ssh/sshd_config
+sed -i 's/#PermitEmptyPasswords\(.*\)/PermitEmptyPasswords\ no/g' /etc/ssh/sshd_config
+sed -i 's/^SELINUX\(.*\)/SELINUX=disabled/g' /etc/selinux/config
+echo 'KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1' >> /etc/ssh/sshd_config
+cp contrib/redhat/sshd.init /etc/init.d/sshd
+chkconfig --add sshd
+chkconfig sshd on
+service sshd start
+service sshd restart
+chkconfig --list sshd
+ssh -V
