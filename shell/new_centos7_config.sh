@@ -59,7 +59,8 @@ echo "* hard nofile 65536" >> /etc/security/limits.conf
 reboot
 
 #12、设置history显示显示操作时间、用户和登录 IP
-cat >> /etc/bashrc <<EOF
+cat >> /etc/bashrc <<"EOF"
+# history actions record，include action time, user, login ip
 HISTFILESIZE=4000
 HISTSIZE=4000
 USER_IP=`who -u am i 2>/dev/null| awk '{print $NF}'|sed -e 's/[()]//g'`
@@ -70,6 +71,9 @@ fi
 HISTTIMEFORMAT="%F %T $USER_IP:`whoami` "
 export HISTTIMEFORMAT
 EOF
+
+添加之后重新加载配置即可
+source /etc/bashrc
 
 # 13、centos7系统安装后自带openjdk1.8，这个略坑，跟开发使用的oracle官方的是不一样的，所以需要卸载重装（开发哥杀过来我才知道的openjdk是坑来的哈哈）
 # 方法一： RPM安装
