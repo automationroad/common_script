@@ -1,0 +1,27 @@
+---
+- hosts: all
+  sudo: yes
+
+  tasks:
+   - name: 安装Apache
+     yum: name={{ item }} state=present
+     with_items:
+     - httpd
+     - httpd-devel
+   - name: 复制配置文件
+     copy:
+       src: "{{ item.src }}"
+       dest: "{{ item.dest }}"
+       owner: root
+       group: root
+       mode: 0644
+     with_items:
+     - {
+       src: "/tmp/httpd.conf",
+         dest: "/etc/httpd/conf/httpd.conf" }
+     - {
+       src: "/tmp/httpd-vhosts.conf",
+       dest: "/etc/httpd/conf/httpd-vhosts.conf"
+       }
+   - name: 检查Apache运行状态，并设置开机启动
+     service: name=httpd state=started enabled=yes

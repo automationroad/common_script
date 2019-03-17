@@ -1,0 +1,58 @@
+---
+- hosts: mylocal
+  tasks: 
+  - name:  导入 Remi GPG 密钥
+    rpm_key: "key={{ item }} state=present"
+    with_items: 
+     - "http://rpms.famillecollet.com/RPM-GPG-KEY-remi"
+  
+  - name: Install Remi repo.
+    command:
+     wget: http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+     rpm: remi-release-7.rpm
+  
+  - name: 安装Remi源
+    yum: name=epel-release state=present
+  
+  - name: 关闭防火墙
+    service: name=firewalld state=stopped
+
+  - name: 安装NodeJS和npm
+    yum: name=npm state=present enablerepo=epel
+
+  - name: 使用Taobao的npm源
+    command: >
+     npm config set registry https://registry.npm.taobao.org
+
+  - name: 关闭npm的https
+    command: >
+     npm config set strict-ssl false
+
+  - name: 安装Forever(用于启动Node.js app)
+    npm: name=forever global=yes state=latest
+
+
+---
+- hosts: mylocal
+  tasks:
+    - name: install Remi repo
+      yum:
+        name: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+        state: present
+
+    - name: Import Remi GPG key
+      rpm_key:
+        key: "http://rpms.remirepo.net/RPM-GPG-KEY-remi"
+        state: present
+
+    - name: Install EPEL repo
+      yum: name=epel-release state=present
+
+    - name: Ensure firewalld is stopped
+      service: name=firewalld state=stopped
+
+    - name: Install NodeJS and npm
+      yum: name=npm state=present enablerepo=epel
+
+    - name: Install Forever
+      npm: name=forever global=yes state=present

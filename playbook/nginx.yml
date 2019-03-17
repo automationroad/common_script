@@ -1,0 +1,15 @@
+---
+- hosts: 192.168.1.214
+  tasks:
+  - name: add group nginx
+    user: name=nginx state=present
+
+  - name: add user nginx
+    user: name=nginx state=present group=nginx
+
+  - name: Install Nginx
+    yum: name=nginx state=present
+
+
+  - name: Start Nginx
+    service: name=nginx state=started enabled=yes

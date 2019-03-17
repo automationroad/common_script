@@ -6,6 +6,9 @@ ssh -V
 openssl version -a
 # 查看zlib版本
 rpm -q zlib
+rpm -q gcc
+rpm -q openssl
+rpm -q openssl-devel
 
 systemctl stop firewalld
 systemctl disable firewalld
@@ -47,7 +50,7 @@ systemctl start sshd
 systemctl restart sshd
 
 
-# 方法二
+# 方法二，centos6
 yum install -y gcc openssl-devel pam-devel rpm-build pam-devel
 wget -c http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.9p1.tar.gz
 tar -zxf openssh-7.9p1.tar.gz &&  cd openssh-7.9p1

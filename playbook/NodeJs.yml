@@ -1,0 +1,52 @@
+---
+- hosts: mylocal
+  vars:
+    node_apps_location: "/root"
+  tasks: 
+  - name:  导入 Remi GPG 密钥
+    rpm_key: "key={{ item }} state=present"
+    with_items: 
+     - "http://rpms.remirepo.net/RPM-GPG-KEY-remi"
+  
+  - name: Install Remi repo.
+    yum:
+     name: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+     state: present
+  
+  - name: 安装Remi源
+    yum: name=epel-release state=present
+  
+  - name: 关闭防火墙
+    service: name=firewalld state=stopped
+
+  - name: 安装NodeJS和npm
+    yum: name=npm state=present enablerepo=epel
+
+  - name: 使用Taobao的npm源
+    command: >
+     npm config set registry https://registry.npm.taobao.org
+
+  - name: 关闭npm的https
+    command: >
+     npm config set strict-ssl false
+
+  - name: 安装Forever(用于启动Node.js app)
+    npm: name=forever global=yes state=latest
+
+  - name: 确保 Node.js app的目录存在
+    file: "path={{ node_apps_location }} state=directory"
+
+  - name: 复制 Node.js app 整个目录到目标主机
+    copy: "src=app dest={{ node_apps_location }}"
+
+  - name: 安装 package.json 文件中定义的依赖关系
+    npm: "path={{ node_apps_location }}/app"
+
+  - name: 获取正在运行的 Node.js app 列表
+    command: forever list
+    register: forever_list
+    changed_when: false
+
+  - name: 启动 Node.js app
+    command: "forever start {{ node_apps_location }}/app/app.js"
+    when: "forever_list.stdout.find('{{ node_apps_location }}/app/app.js') == -1"
