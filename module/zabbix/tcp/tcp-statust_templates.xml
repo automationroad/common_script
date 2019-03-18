@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>4.2</version>
-    <date>2019-03-18T06:21:07Z</date>
+    <date>2019-03-18T13:27:17Z</date>
     <groups>
         <group>
             <name>myApplicaions</name>
@@ -25,7 +25,7 @@
             <items>
                 <item>
                     <name>TCP_Status: CLOSE-WAIT</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[CLOSE-WAIT]</key>
@@ -84,7 +84,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: CLOSED</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[CLOSED]</key>
@@ -143,7 +143,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: CLOSING</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[CLOSING]</key>
@@ -202,7 +202,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: ESTABLISHED</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[ESTABLISHED]</key>
@@ -261,7 +261,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: FIN-WAIT-1</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[FIN-WAIT-1]</key>
@@ -320,7 +320,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: FIN-WAIT-2</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[FIN-WAIT-2]</key>
@@ -379,7 +379,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: LAST-ACK</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[LAST-ACK]</key>
@@ -438,7 +438,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: LISTEN</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[LISTEN]</key>
@@ -497,7 +497,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: SYN-RECV</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[SYN-RECV ]</key>
@@ -556,7 +556,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: SYN-SENT</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[SYN-SENT]</key>
@@ -615,7 +615,7 @@
                 </item>
                 <item>
                     <name>TCP_Status: TIME-WAIT</name>
-                    <type>7</type>
+                    <type>0</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>tcp_status[TIME-WAIT]</key>
