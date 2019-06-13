@@ -59,7 +59,7 @@ echo "* hard nofile 65536" >> /etc/security/limits.conf
 reboot
 
 #12、设置history显示显示操作时间、用户和登录 IP
-cat >> /etc/bashrc <<"EOF"
+cat >> /etc/bashrc << "EOF"
 # history actions record，include action time, user, login ip
 HISTFILESIZE=4000
 HISTSIZE=4000
@@ -91,7 +91,7 @@ tar --no-same-owner -zxf jdk-8u181-linux-x64.tar.gz
 mkdir /usr/local/java
 mv jdk1.8.0_181 /usr/local/java
 # 编辑
-cat /etc/profile << "EOF"
+cat >> /etc/profile << "EOF"
 export JAVA_HOME=/usr/local/java/jdk1.8.0_181
 export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
